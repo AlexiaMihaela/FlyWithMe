@@ -1,6 +1,8 @@
 import '@mantine/core/styles.css'
 import { Button } from "@mantine/core";
 import "./App.css";
+import flyAnimation from "./assets/Animation.json";
+import { Player } from "@lottiefiles/react-lottie-player";
 
 const App = () => {
   return (
@@ -12,6 +14,14 @@ const App = () => {
         <Button >Sign In</Button>
         <Button >Sign Up</Button>
         </div>
+      </div>
+      <div className="animation">
+        <Player
+          autoplay
+          loop
+          src={flyAnimation}
+          className="lottie-player"
+        />
       </div>
     </div>
   );

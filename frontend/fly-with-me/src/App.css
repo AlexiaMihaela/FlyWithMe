@@ -44,3 +44,14 @@
 .buttons button:hover {
   background-color: #be4016;
 }
+
+
+.animation {
+  max-width: 45%;
+}
+
+.lottie-player {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
