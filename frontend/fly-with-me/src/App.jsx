@@ -3,6 +3,7 @@ import { Button } from "@mantine/core";
 import "./App.css";
 import flyAnimation from "./assets/Animation.json";
 import { Player } from "@lottiefiles/react-lottie-player";
+import SignUp from "./components/SignUp/signUp";
 
 const App = () => {
   return (
@@ -12,7 +13,7 @@ const App = () => {
         <p>Your next adventure starts here. Fast bookings, great prices, and smooth flights to the places you love</p>
         <div className="buttons">
         <Button >Sign In</Button>
-        <Button >Sign Up</Button>
+        <SignUp/>
         </div>
       </div>
       <div className="animation">
