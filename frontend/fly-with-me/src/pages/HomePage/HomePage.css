@@ -1,0 +1,58 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 80px;
+    margin-top: 40px;
+    box-sizing: border-box;
+  }
+  
+  .text {
+    
+    max-width: 50%;
+  }
+  
+  .text h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .text p {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  .buttons {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    margin-top: 90px;
+  }
+  
+  .buttons button {
+    padding: 0.7rem 1.5rem;
+    background-color: #E85828;
+    border: none;
+    border-radius: 8px;
+    font-weight: bolt;
+    transition: background-color 0.3s ease;
+  }
+  
+  .buttons button:hover {
+    background-color: #be4016;
+  }
+  
+  
+  .animation {
+    max-width: 45%;
+  }
+  
+  .lottie-player {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+  }
+  
