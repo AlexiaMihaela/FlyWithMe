@@ -44,6 +44,18 @@ router.put('/:flightNumber', async (req, res) => {
   }
 });
 
+router.delete('/:flightNumber', async (req, res) => {
+  try {
+    const deleted = await Flight.findOneAndDelete({ flightNumber: req.params.flightNumber });
 
+    if (!deleted) {
+      return res.status(404).json({ message: 'Flight not found' });
+    }
+
+    res.status(200).json({ message: 'Flight deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error deleting flight', error });
+  }
+});
 
 module.exports = router;

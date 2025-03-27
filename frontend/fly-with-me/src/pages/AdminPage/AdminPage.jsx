@@ -7,7 +7,7 @@ import './AdminPage.css';
 const AdminPage = () => {
   const [flights, setFlights] = useState([]);
   const [loading, setLoading] = useState(true);
-
+ 
   const [searchOrigin, setSearchOrigin] = useState('');
   const [searchDestination, setSearchDestination] = useState('');
   const [searchStatus, setSearchStatus] = useState('');
@@ -28,6 +28,35 @@ const AdminPage = () => {
     fetchFlights();
   }, []);
 
+  const handleDelete = async (flightNumber) => {
+  
+    const confirmDelete = window.confirm(`Delete flight ${flightNumber}?`);
+    if (!confirmDelete) return;
+  
+    try {
+      const response = await fetch(`http://localhost:5000/api/admin/flights/${flightNumber}`, {
+        method: 'DELETE',
+      });
+  
+      let data;
+      try {
+        data = await response.json();
+      } catch (err) {
+        console.warn('Non-JSON response received');
+        data = { message: 'Non-JSON response received (possibly HTML or 404)' };
+      }
+  
+      if (response.ok) {
+        setFlights((prev) => prev.filter((f) => f.flightNumber !== flightNumber));
+      } else {
+        alert(`Error: ${data.message}`);
+      }
+    } catch (error) {
+      console.error('Error deleting flight:', error);
+    }
+  };
+  
+  
   return (
     <div className="admin-container">
       <h2>Admin - Flight Management</h2>
@@ -85,6 +114,7 @@ const AdminPage = () => {
                   <p><strong>Seats:</strong> {flight.availableSeats}/{flight.totalSeats}</p>
                   <p><strong>Price:</strong> ${flight.price}</p>
                   <Link to={`/admin/flight/${flight.flightNumber}`} className="edit-button">Edit</Link>
+                  <button onClick={() => handleDelete(flight.flightNumber)} className="delete-button">Delete</button>
                   </div>
               </div>
             </div>
