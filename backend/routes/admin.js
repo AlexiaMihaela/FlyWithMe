@@ -3,6 +3,17 @@ const router = express.Router();
 const Flight = require('../models/Flight'); 
 
 
+router.post('/', async (req, res) => {
+  try {
+    const flight = new Flight(req.body);
+    await flight.save();
+    res.status(201).json(flight);
+  } catch (error) {
+    res.status(500).json({ message: 'Error creating flight', error });
+  }
+});
+
+
 router.get('/', async (req, res) => {
   try {
     const flights = await Flight.find();
