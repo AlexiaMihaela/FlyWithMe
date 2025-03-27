@@ -1,0 +1,116 @@
+.search-input {
+    max-width: 450px;
+    margin: 30px auto 10px auto;
+    padding: 0 20px;
+  }
+  
+  .container {
+    font-family: "Segoe UI", sans-serif;
+    max-width: 450px;
+    margin: 0 auto 40px auto;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #fdfbfb, #ebedee);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap:40px;
+  }
+  
+  .location {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .date {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .icon {
+    width: 130px;
+    height: auto;
+  }
+  
+  .temp {
+    font-size: 44px;
+    font-weight: bold;
+    color: #ff8c00;
+  }
+  
+  .bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 60px;
+  }
+  
+  .humidity,
+  .wind {
+    text-align: center;
+  }
+  
+  .dataname {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 5px;
+  }
+  
+  .data {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .weathertype {
+    font-size: 16px;
+    font-weight: 500;
+    color: #444;
+    text-transform: capitalize;
+  }
+  
+  @media (max-width: 480px) {
+    .search-input {
+      padding: 0 10px;
+    }
+  
+    .container {
+      padding: 20px;
+      gap: 20px;
+    }
+  
+    .icon {
+      width: 100px;
+    }
+  
+    .temp {
+      font-size: 36px;
+    }
+  
+    .top-row {
+      flex-direction: column;
+      gap: 6px;
+    }
+  
+    .bottom-row {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
