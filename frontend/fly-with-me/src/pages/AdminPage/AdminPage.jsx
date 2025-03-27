@@ -56,6 +56,7 @@ const AdminPage = () => {
           <option value="cancelled">Cancelled</option>
         </select>
         <button disabled>Search (coming soon)</button>
+        <Link to={`/admin/create-flight`} className="edit-button">Add Flight</Link>
       </div>
 
       {/* Flight cards */}
