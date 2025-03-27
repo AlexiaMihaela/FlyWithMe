@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
+
 import './AdminPage.css';
 
 const AdminPage = () => {
@@ -61,7 +64,7 @@ const AdminPage = () => {
       ) : (
         <div className="flight-list">
           {flights.map((flight) => (
-            <div className="flight-card" key={flight._id}>
+            <div className="flight-card" key={flight._id} >
               <div className="flight-header">
                 <span className="flight-number">{flight.flightNumber}</span>
                 <span className={`status ${flight.status}`}>{flight.status}</span>
@@ -76,9 +79,13 @@ const AdminPage = () => {
                   <p><strong>Arrival:</strong> {new Date(flight.arrivedDate).toLocaleString()}</p>
                 </div>
                 <div>
+                <p><strong>Time:</strong> {flight.durationMinutes.toLocaleString()} minutes </p>
+                  </div>
+                <div>
                   <p><strong>Seats:</strong> {flight.availableSeats}/{flight.totalSeats}</p>
                   <p><strong>Price:</strong> ${flight.price}</p>
-                </div>
+                  <Link to={`/admin/flight/${flight.flightNumber}`} className="edit-button">Edit</Link>
+                  </div>
               </div>
             </div>
           ))}
