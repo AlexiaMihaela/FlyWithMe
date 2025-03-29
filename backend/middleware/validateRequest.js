@@ -7,7 +7,6 @@ const validateRegisterInput = async (req, res, next) => {
   if (!username || username.trim().length < 3) {
     errors.username = 'Username must be at least 3 characters long';
   } else {
-    // user already exists
     const existingUsername = await User.findOne({ username: username.trim() });
     if (existingUsername) {
       errors.username = 'Username is already taken';
@@ -35,4 +34,23 @@ const validateRegisterInput = async (req, res, next) => {
   next();
 };
 
-module.exports = { validateRegisterInput }; 
+const validateLoginInput = async (req, res, next) => {
+  const { username, password } = req.body;
+  const errors = {};
+
+  if (!username || username.trim().length === 0) {
+    errors.username = 'Username is required';
+  }
+
+  if (!password || password.length === 0) {
+    errors.password = 'Password is required';
+  }
+
+  if (Object.keys(errors).length > 0) {
+    return res.status(400).json({ errors });
+  }
+
+  next();
+};
+
+module.exports = { validateRegisterInput, validateLoginInput }; 
