@@ -8,7 +8,7 @@ router.post('/register', validateRegisterInput, async (req, res) => {
   try {
     const { username, email, password } = req.body;
     
-    // Create new user
+    // Create new user (isAdmin will default to false)
     const user = new User({
       username: username.trim(),
       email: email.toLowerCase(),
@@ -22,7 +22,8 @@ router.post('/register', validateRegisterInput, async (req, res) => {
       user: {
         id: user._id,
         username: user.username,
-        email: user.email
+        email: user.email,
+        isAdmin: user.isAdmin
       }
     });
 
@@ -46,7 +47,10 @@ router.post('/login', validateLoginInput, async (req, res) => {
     }
 
     const token = jwt.sign(
-      { userId: user._id },
+      { 
+        userId: user._id,
+        isAdmin: user.isAdmin  // Include isAdmin in JWT payload
+      },
       process.env.JWT_SECRET,
       { expiresIn: '24h' }
     );
@@ -57,7 +61,8 @@ router.post('/login', validateLoginInput, async (req, res) => {
       user: {
         id: user._id,
         username: user.username,
-        email: user.email
+        email: user.email,
+        isAdmin: user.isAdmin
       }
     });
 
