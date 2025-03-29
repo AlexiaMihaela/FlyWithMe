@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import { ProtectedAdminRoute, ProtectedUserRoute } from './components/ProtectedRoute/ProtectedRoute';
 import AdminPage from './pages/AdminPage/AdminPage';
 import HomePage from './pages/HomePage/HomePage';
 import FlightPage from './pages/FlightPage/FlightPage';
@@ -10,10 +11,38 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage/>} />
-      <Route path="/admin" element={<AdminPage />} />
-      <Route path="/admin/flight/:flightNumber" element={<FlightPage />} />
-      <Route path="/admin/create-flight" element={<CreateFlight />} />
-      <Route path="/user" element={<UserPage/>} />
+      <Route 
+        path="/admin" 
+        element={
+          <ProtectedAdminRoute>
+            <AdminPage />
+          </ProtectedAdminRoute>
+        } 
+      />
+      <Route 
+        path="/admin/flight/:flightNumber" 
+        element={
+          <ProtectedAdminRoute>
+            <FlightPage />
+          </ProtectedAdminRoute>
+        } 
+      />
+      <Route 
+        path="/admin/create-flight" 
+        element={
+          <ProtectedAdminRoute>
+            <CreateFlight />
+          </ProtectedAdminRoute>
+        } 
+      />
+      <Route 
+        path="/user" 
+        element={
+          <ProtectedUserRoute>
+            <UserPage />
+          </ProtectedUserRoute>
+        } 
+      />
     </Routes>
   );
 };

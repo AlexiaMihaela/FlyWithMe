@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDisclosure } from "@mantine/hooks";
 import { Modal, Button, TextInput, PasswordInput } from "@mantine/core";
 import "./signIn.css";
 
 const SignIn = () => {
+  const navigate = useNavigate();
   const [opened, { open, close }] = useDisclosure(false);
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
@@ -37,9 +39,16 @@ const SignIn = () => {
       }
 
       localStorage.setItem('token', data.token);
+      localStorage.setItem('isAdmin', data.user.isAdmin);
       setFormData({ username: '', password: '' });
       setErrors({});
       close();
+
+      if (data.user.isAdmin) {
+        navigate('/admin');
+      } else {
+        navigate('/user');
+      }
 
     } catch (error) {
       setErrors({ general: 'Login failed. Please try again.' });
