@@ -30,19 +30,4 @@ const FlightCard = ({ flight }) => {
   );
 };
 
-FlightCard.propTypes = {
-  flight: PropTypes.shape({
-    flightNumber: PropTypes.string.isRequired,
-    status: PropTypes.string.isRequired,
-    origin: PropTypes.string.isRequired,
-    destination: PropTypes.string.isRequired,
-    departureDate: PropTypes.string.isRequired,
-    arrivedDate: PropTypes.string.isRequired,
-    durationMinutes: PropTypes.number.isRequired,
-    availableSeats: PropTypes.number.isRequired,
-    totalSeats: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired,
-  }).isRequired,
-};
-
 export default FlightCard; 

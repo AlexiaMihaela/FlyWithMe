@@ -21,6 +21,19 @@
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 8px;
+    min-width: 200px;
+  }
+  
+  .filters input[type="date"] {
+    min-width: 150px;
+    color: #333;
+  }
+  
+  @media (max-width: 768px) {
+    .filters input {
+      width: 100%;
+      min-width: unset;
+    }
   }
   
   .flight-list {
