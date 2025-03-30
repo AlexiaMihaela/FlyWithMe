@@ -75,6 +75,14 @@ router.post("/", authenticateUser, async (req, res) => {
   }
 });
 
+router.get('/mine', authenticateUser, async (req, res) => {
+  try {
+    const reservations = await Reservation.find({ user: req.user.userId });
+    res.json(reservations);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching your reservations", error });
+  }
+});
 
 router.get("/pending", async (req, res) => {
   console.log("Fetching pending reservations...");
