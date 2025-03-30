@@ -4,6 +4,7 @@ import AdminPage from './pages/AdminPage/AdminPage';
 import HomePage from './pages/HomePage/HomePage';
 import FlightPage from './pages/FlightPage/FlightPage';
 import CreateFlight from './pages/CreateFlight/CreateFlight';
+import MakeReservation from './pages/MakeReservation/MakeReservation';
 import '@mantine/core/styles.css'
 import UserPage from './pages/UserPage/UserPage';
 
@@ -17,6 +18,12 @@ const App = () => {
           <ProtectedAdminRoute>
             <AdminPage />
           </ProtectedAdminRoute>
+        } 
+      />
+      <Route 
+        path="/reservation/:flightNumber"
+        element={
+         <MakeReservation />
         } 
       />
       <Route 

@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import './FlightCard.css';
+
 
 const FlightCard = ({ flight }) => {
   return (
@@ -23,8 +25,8 @@ const FlightCard = ({ flight }) => {
         <div>
           <p><strong>Available Seats:</strong> {flight.availableSeats}/{flight.totalSeats}</p>
           <p><strong>Price:</strong> ${flight.price}</p>
-          <button className="book-button">Book Now</button>
-        </div>
+          <Link to={`/reservation/${flight.flightNumber}`} className="book-button">Book Now</Link>
+          </div>
       </div>
     </div>
   );
