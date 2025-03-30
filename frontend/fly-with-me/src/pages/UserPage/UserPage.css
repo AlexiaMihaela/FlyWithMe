@@ -1,0 +1,111 @@
+.user-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .user-container h2 {
+    margin-bottom: 20px;
+  }
+  
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  
+  .filters input {
+    padding: 10px 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    min-width: 200px;
+  }
+  
+  .filters input[type="date"] {
+    min-width: 150px;
+    color: #333;
+  }
+  
+  @media (max-width: 768px) {
+    .filters input {
+      width: 100%;
+      min-width: unset;
+    }
+  }
+  
+  .flight-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  
+  .flight-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.2s;
+  }
+  
+  .flight-card:hover {
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+  }
+  
+  .flight-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  
+  .flight-number {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .status {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    text-transform: capitalize;
+  }
+  
+  .status.on-time {
+    background-color: #e6f4ea;
+    color: #2e7d32;
+  }
+  
+  .status.delayed {
+    background-color: #fff9e6;
+    color: #ed6c02;
+  }
+  
+  .status.cancelled {
+    background-color: #fdecea;
+    color: #d32f2f;
+  }
+  
+  .flight-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .book-button {
+    background-color: #e85828;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  .book-button:hover {
+    background-color: #be4016;
+  }
