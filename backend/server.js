@@ -14,6 +14,8 @@ mongoose.connect(process.env.MONGODB_URI)
 
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/admin/flights', require('./routes/admin'));
+app.use('/api/reservation', require('./routes/reservation'));
+
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
