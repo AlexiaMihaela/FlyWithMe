@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 
 import './AdminPage.css';
+import Header from '../../components/header/header';
 
 const AdminPage = () => {
   const [flights, setFlights] = useState([]);
@@ -58,6 +59,8 @@ const AdminPage = () => {
   
   
   return (
+    <>
+    <Header/>
     <div className="admin-container">
       <h2>Admin - Flight Management</h2>
 
@@ -123,6 +126,7 @@ const AdminPage = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 
