@@ -2,13 +2,19 @@ const express = require('express');
 const router = express.Router();
 const Flight = require('../models/Flight'); 
 
-
 router.post('/', async (req, res) => {
   try {
+    const existingFlight = await Flight.findOne({ flightNumber: req.body.flightNumber });
+
+    if (existingFlight) {
+      return res.status(400).json({ message: 'Flight with this number already exists' });
+    }
+
     const flight = new Flight(req.body);
     await flight.save();
     res.status(201).json(flight);
   } catch (error) {
+    console.error('Error creating flight:', error);
     res.status(500).json({ message: 'Error creating flight', error });
   }
 });
