@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TextInput, Alert } from "@mantine/core";
 import Sunny from "../../assets/sunny.png";
 import Rainy from "../../assets/rainy.png";
@@ -7,30 +7,37 @@ import Cloudy from "../../assets/clouds.png";
 import "./Weather.css";
 
 const Weather = () => {
-  const [location, setLocation] = useState("");
+  const [location, setLocation] = useState("Bucharest");
   const [data, setData] = useState(null);
   const [error, setError] = useState("");
   const api_key = import.meta.env.VITE_WEATHER_API_KEY;
 
-  const fetchWeather = async () => {
-    if (!location) return;
-    setError("");
-    try {
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${api_key}`;
-      const res = await fetch(url);
-      const weatherData = await res.json();
+  useEffect(() => {
+    fetchWeather();
+  }, []);
 
-      if (res.ok) {
-        setData(weatherData);
-      } else {
-        setData(null);
-        setError(weatherData.message || "Something went wrong");
-      }
-    } catch (err) {
+  const fetchWeather = async (customLocation) => {
+  const query = customLocation || location;
+  if (!query) return;
+  setError("");
+  try {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&appid=${api_key}`;
+    const res = await fetch(url);
+    const weatherData = await res.json();
+
+    if (res.ok) {
+      setData(weatherData);
+    } else {
       setData(null);
-      setError("Network error");
+      setError(weatherData.message || "Something went wrong");
     }
-  };
+  } catch (err) {
+    setData(null);
+    setError("Network error");
+  }
+};
+
+
 
   const weatherImages = {
     Clear: Sunny,
