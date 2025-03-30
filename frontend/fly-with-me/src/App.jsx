@@ -7,11 +7,15 @@ import CreateFlight from './pages/CreateFlight/CreateFlight';
 import MakeReservation from './pages/MakeReservation/MakeReservation';
 import '@mantine/core/styles.css'
 import UserPage from './pages/UserPage/UserPage';
+import Reservations from "./pages/Reservations/Reservations"
+import Requests from './pages/Requests/Requests';
 
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage/>} />
+      <Route path="/reservations" element={<Reservations/>} />
+      <Route path="/requests" element={<Requests/>} />
       <Route 
         path="/admin" 
         element={

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Weather from "../../components/Weather/Weather";
 import FlightCard from "../../components/FlightCard/FlightCard";
 import "./UserPage.css";
+import Header from "../../components/header/header";
 
 const UserPage = () => {
   const [flights, setFlights] = useState([]);
@@ -46,6 +47,8 @@ const UserPage = () => {
   });
 
   return (
+    <>
+    <Header/>
     <div className="user-container">
       <h2>Available Flights</h2>
       <Weather />
@@ -84,6 +87,7 @@ const UserPage = () => {
         <p>No flights are matching your search.</p>
       )}
     </div>
+    </>
   );
 };
 
