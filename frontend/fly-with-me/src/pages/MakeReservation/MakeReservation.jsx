@@ -40,18 +40,22 @@ const MakeReservation = () => {
   }, [seats, flight]);
 
   const handleReservation = async () => {
+    const token = localStorage.getItem("token");
+  
     try {
       const response = await fetch('http://localhost:5000/api/reservation', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`, // 👈 Asta e cheia!
+        },
         body: JSON.stringify({
-          user: userId,
           flightNumber: flight.flightNumber,
           seatsReserved: seats,
           totalPrice,
         }),
       });
-
+  
       if (response.ok) {
         alert('Reservation created!');
         navigate('/user');
@@ -63,7 +67,6 @@ const MakeReservation = () => {
       console.error('Error making reservation:', err);
     }
   };
-
   if (!flight) return <p>Loading flight details...</p>;
 
   return (
