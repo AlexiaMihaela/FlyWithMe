@@ -400,3 +400,6 @@ FodyWeavers.xsd
 *.sln.iml
 backend/.env
 frontend/fly-with-me/.env
+frontend/fly-with-me/package-lock.json
+frontend/fly-with-me/package.json
+frontend/fly-with-me/package.json
