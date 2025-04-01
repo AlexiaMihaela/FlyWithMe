@@ -62,6 +62,18 @@
   width: 100%;
 }
 
-.book-button:hover {
+.-button:hover {
   background-color: #be4016;
 } 
+
+.not-bookable {
+  background-color: #ffe0e0;
+  color: #b00020;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin-top: 8px;
+  text-align: center;
+  box-shadow: 0 0 5px rgba(176, 0, 32, 0.2);
+}
