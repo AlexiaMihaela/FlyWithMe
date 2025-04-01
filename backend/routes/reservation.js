@@ -107,11 +107,24 @@ router.patch("/:id/confirm", async (req, res) => {
 });
 router.patch("/:id/cancel", async (req, res) => {
   try {
+    
+    const reservation = await Reservation.findById(req.params.id);
+    if (!reservation) {
+      return res.status(404).json({ message: "Reservation not found" });
+    }
+
+    const flight = await Flight.findOne({ flightNumber: reservation.flightNumber });
+    if (flight) {
+      flight.availableSeats += reservation.seatsReserved;
+      await flight.save();
+    }
+
     const updated = await Reservation.findByIdAndUpdate(
       req.params.id,
       { status: "cancelled" },
       { new: true }
     );
+
     res.json(updated);
   } catch (error) {
     res.status(500).json({ message: "Error cancelling reservation", error });
