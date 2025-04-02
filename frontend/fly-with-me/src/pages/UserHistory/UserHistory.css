@@ -1,0 +1,28 @@
+.user-history-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.user-info {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.reservations-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.reservation-card {
+  padding: 20px;
+}
+
+.no-reservations-message {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2rem;
+  grid-column: 1 / -1; 
+} 
