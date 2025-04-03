@@ -1,0 +1,39 @@
+.users-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.search-input {
+  margin-bottom: 20px;
+  max-width: 400px;
+}
+
+.users-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.user-card {
+  transition: transform 0.2s;
+  
+}
+
+.user-card:hover {
+  transform: translateY(-2px);
+}
+
+.view-history-button {
+  background-color: #e85828;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  
+}
+
+.view-history-button:hover {
+  background-color: #be4016;
+} 

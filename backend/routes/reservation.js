@@ -131,5 +131,15 @@ router.patch("/:id/cancel", async (req, res) => {
   }
 });
 
+router.get("/user/:userId", async (req, res) => {
+  try {
+    const reservations = await Reservation.find({ user: req.params.userId })
+      .populate('user', 'username email')
+      .sort({ createdAt: -1 });
+    res.json(reservations);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching user reservations", error });
+  }
+});
 
 module.exports = router;

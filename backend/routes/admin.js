@@ -1,6 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const Flight = require('../models/Flight'); 
+const User = require('../models/User');
+const authenticateUser = require('../middleware/authenticateUser');
+
+router.get('/users', authenticateUser, async (req, res) => {
+  if (!req.user.isAdmin) {
+    return res.status(403).json({ message: "Not authorized" });
+  }
+
+  try {
+    const users = await User.find({}, 'username email');
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching users", error });
+  }
+});
 
 router.post('/', async (req, res) => {
   try {
@@ -18,7 +33,6 @@ router.post('/', async (req, res) => {
     res.status(500).json({ message: 'Error creating flight', error });
   }
 });
-
 
 router.get('/', async (req, res) => {
   try {

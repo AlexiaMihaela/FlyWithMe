@@ -9,6 +9,8 @@ import '@mantine/core/styles.css'
 import UserPage from './pages/UserPage/UserPage';
 import Reservations from "./pages/Reservations/Reservations"
 import Requests from './pages/Requests/Requests';
+import Users from './pages/Users/Users';
+import UserHistory from './pages/UserHistory/UserHistory';
 
 const App = () => {
   return (
@@ -52,6 +54,22 @@ const App = () => {
           <ProtectedUserRoute>
             <UserPage />
           </ProtectedUserRoute>
+        } 
+      />
+      <Route 
+        path="/admin/users" 
+        element={
+          <ProtectedAdminRoute>
+            <Users />
+          </ProtectedAdminRoute>
+        } 
+      />
+      <Route 
+        path="/admin/users/:userId" 
+        element={
+          <ProtectedAdminRoute>
+            <UserHistory />
+          </ProtectedAdminRoute>
         } 
       />
     </Routes>

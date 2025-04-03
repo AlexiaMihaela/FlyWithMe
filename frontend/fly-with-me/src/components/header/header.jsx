@@ -20,6 +20,9 @@ const Header = () => {
             <Button component={Link} to="/requests" variant="light">
               Requests
             </Button>
+            <Button component={Link} to="/admin/users" variant="light">
+              Users
+            </Button>
           </>
         ) : (
           <>
