@@ -72,4 +72,48 @@ router.post('/login', validateLoginInput, async (req, res) => {
   }
 });
 
+router.get('/:userId', async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const user = await User.findById(userId).select('-password');
+    if (!user) {
+      return res.status(404).json({ message: 'Utilizatorul nu a fost găsit' });
+    }
+
+    res.json(user);
+  } catch (err) {
+    console.error('Eroare la obținerea datelor utilizatorului:', err);
+    res.status(500).json({ message: 'Eroare internă' });
+  }
+});
+
+router.put('/:userId', async (req, res) => {
+  const { userId } = req.params;
+  const { field, newValue, currentPassword } = req.body;
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ message: "Utilizatorul nu există." });
+
+    const isMatch = await user.comparePassword(currentPassword);
+    if (!isMatch) {
+      return res.status(401).json({ message: "Parola actuală este incorectă." });
+    }
+
+    if (field === 'password') {
+      user.password = newValue;
+    } else {
+      user[field] = newValue;
+    }
+
+    await user.save();
+
+    res.json({ message: `${field} actualizat cu succes.` });
+  } catch (err) {
+    console.error("Eroare la actualizare:", err);
+    res.status(500).json({ message: "Eroare internă la actualizare." });
+  }
+});
+
 module.exports = router;
