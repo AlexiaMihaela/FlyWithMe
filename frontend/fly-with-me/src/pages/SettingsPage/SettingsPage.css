@@ -1,0 +1,105 @@
+/* deja existent pentru drawer */
+.drawer-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    overflow-x: hidden;
+    transition: width 0.3s ease;
+    z-index: 1000;
+  }
+  
+  .drawer-overlay.open {
+    width: 100%;
+  }
+  
+  .drawer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 400px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.2);
+    padding: 24px;
+    overflow-y: auto;
+  }
+  
+  .drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+  }
+  
+  .drawer-content {
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .settings-field {
+    margin-bottom: 24px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 16px;
+  }
+  
+  .settings-field label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+  }
+  
+  .settings-field span {
+    font-size: 16px;
+    color: #444;
+    margin-right: 12px;
+  }
+  
+  .settings-field input {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .settings-field button {
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button.edit-btn {
+    background-color: #42a5f5;
+    color: white;
+  }
+  
+  button.save-btn {
+    background-color: #fb8c00;
+    color: white;
+  }
+  
+  button.confirm-btn {
+    background-color: #66bb6a;
+    color: white;
+  }
+  
+  .close-btn {
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+  }
+  
