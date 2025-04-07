@@ -4,11 +4,17 @@ const User = require('../models/User');
 const { validateRegisterInput, validateLoginInput } = require('../middleware/validateRequest');
 const jwt = require('jsonwebtoken');
 
+/**
+ * @route   POST /api/users/register
+ * @desc    Register a new user
+ * @access  Public
+ * @body    { username, email, password }
+ * @returns Created user (without password)
+ */
 router.post('/register', validateRegisterInput, async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    
-    // Create new user (isAdmin will default to false)
+
     const user = new User({
       username: username.trim(),
       email: email.toLowerCase(),
@@ -32,6 +38,13 @@ router.post('/register', validateRegisterInput, async (req, res) => {
   }
 });
 
+/**
+ * @route   POST /api/users/login
+ * @desc    Login user and return JWT token
+ * @access  Public
+ * @body    { username, password }
+ * @returns JWT token + user info
+ */
 router.post('/login', validateLoginInput, async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -47,9 +60,9 @@ router.post('/login', validateLoginInput, async (req, res) => {
     }
 
     const token = jwt.sign(
-      { 
+      {
         userId: user._id,
-        isAdmin: user.isAdmin  // Include isAdmin in JWT payload
+        isAdmin: user.isAdmin
       },
       process.env.JWT_SECRET,
       { expiresIn: '24h' }
@@ -72,6 +85,11 @@ router.post('/login', validateLoginInput, async (req, res) => {
   }
 });
 
+/**
+ * @route   GET /api/users/:userId
+ * @desc    Get user data by ID (excluding password)
+ * @access  Public (ideally protected for self or admin)
+ */
 router.get('/:userId', async (req, res) => {
   const { userId } = req.params;
 
@@ -88,6 +106,12 @@ router.get('/:userId', async (req, res) => {
   }
 });
 
+/**
+ * @route   PUT /api/users/:userId
+ * @desc    Update a specific field (e.g. password/email) if currentPassword is correct
+ * @access  Public (should be protected)
+ * @body    { field, newValue, currentPassword }
+ */
 router.put('/:userId', async (req, res) => {
   const { userId } = req.params;
   const { field, newValue, currentPassword } = req.body;
@@ -108,7 +132,6 @@ router.put('/:userId', async (req, res) => {
     }
 
     await user.save();
-
     res.json({ message: `${field} actualizat cu succes.` });
   } catch (err) {
     console.error("Eroare la actualizare:", err);

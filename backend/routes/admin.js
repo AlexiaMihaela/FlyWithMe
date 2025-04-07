@@ -1,9 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const Flight = require('../models/Flight'); 
+const Flight = require('../models/Flight');
 const User = require('../models/User');
 const authenticateUser = require('../middleware/authenticateUser');
 
+/**
+ * @route   GET /api/flights/users
+ * @desc    Get all users (admin only)
+ * @access  Private (admin only)
+ */
 router.get('/users', authenticateUser, async (req, res) => {
   if (!req.user.isAdmin) {
     return res.status(403).json({ message: "Not authorized" });
@@ -17,11 +22,17 @@ router.get('/users', authenticateUser, async (req, res) => {
   }
 });
 
+/**
+ * @route   POST /api/flights
+ * @desc    Create a new flight
+ * @access  Private (admin only)
+ * @body    flightNumber, departure, destination, etc.
+ */
 router.post('/', authenticateUser, async (req, res) => {
   if (!req.user.isAdmin) {
     return res.status(403).json({ message: "Not authorized" });
   }
-  
+
   try {
     const existingFlight = await Flight.findOne({ flightNumber: req.body.flightNumber });
 
@@ -38,6 +49,11 @@ router.post('/', authenticateUser, async (req, res) => {
   }
 });
 
+/**
+ * @route   GET /api/flights
+ * @desc    Get all flights
+ * @access  Public
+ */
 router.get('/', async (req, res) => {
   try {
     const flights = await Flight.find();
@@ -47,6 +63,11 @@ router.get('/', async (req, res) => {
   }
 });
 
+/**
+ * @route   GET /api/flights/:flightNumber
+ * @desc    Get a flight by flightNumber
+ * @access  Public
+ */
 router.get('/:flightNumber', async (req, res) => {
   try {
     const flight = await Flight.findOne({ flightNumber: req.params.flightNumber });
@@ -61,6 +82,12 @@ router.get('/:flightNumber', async (req, res) => {
   }
 });
 
+/**
+ * @route   PUT /api/flights/:flightNumber
+ * @desc    Update a flight by flightNumber
+ * @access  Public (should be protected)
+ * @body    Updated flight data
+ */
 router.put('/:flightNumber', async (req, res) => {
   try {
     const updatedFlight = await Flight.findOneAndUpdate(
@@ -79,6 +106,11 @@ router.put('/:flightNumber', async (req, res) => {
   }
 });
 
+/**
+ * @route   DELETE /api/flights/:flightNumber
+ * @desc    Delete a flight by flightNumber
+ * @access  Public (should be admin-only)
+ */
 router.delete('/:flightNumber', async (req, res) => {
   try {
     const deleted = await Flight.findOneAndDelete({ flightNumber: req.params.flightNumber });
