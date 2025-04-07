@@ -17,7 +17,11 @@ router.get('/users', authenticateUser, async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', authenticateUser, async (req, res) => {
+  if (!req.user.isAdmin) {
+    return res.status(403).json({ message: "Not authorized" });
+  }
+  
   try {
     const existingFlight = await Flight.findOne({ flightNumber: req.body.flightNumber });
 
