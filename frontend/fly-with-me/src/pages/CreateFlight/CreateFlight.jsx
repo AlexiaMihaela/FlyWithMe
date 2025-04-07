@@ -24,14 +24,18 @@ const CreateFlight = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
+      const token = localStorage.getItem('token');
       const response = await fetch('http://localhost:5000/api/admin/flights', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
         body: JSON.stringify(formData),
       });
-
+  
       if (response.ok) {
         navigate('/admin');
       } else {
