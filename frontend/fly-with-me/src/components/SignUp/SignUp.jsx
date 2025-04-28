@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, Modal, TextInput, PasswordInput } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import "./signUp.css"
+import "./SignUp.css"
 
 const SignUp = () => {
   const [opened, { open, close }] = useDisclosure(false);
