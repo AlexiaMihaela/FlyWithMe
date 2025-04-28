@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDisclosure } from "@mantine/hooks";
 import { Modal, Button, TextInput, PasswordInput } from "@mantine/core";
-import "./signIn.css";
+import "./SignIn.css";
 
 const SignIn = () => {
   const navigate = useNavigate();
