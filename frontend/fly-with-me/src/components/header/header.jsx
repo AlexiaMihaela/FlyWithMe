@@ -1,7 +1,7 @@
 // Header.jsx
 import { Button } from "@mantine/core";
 import { Link } from "react-router-dom";
-import "./Header.css";
+import "./header.css";
 import { IoSettingsSharp } from "react-icons/io5";
 import { useState } from "react";
 import SettingsPage from "../../pages/SettingsPage/SettingsPage";
