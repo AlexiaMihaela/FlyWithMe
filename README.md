@@ -70,19 +70,18 @@ npm install
 ```
 Creeaza un fisier `.env`:
 ```env
-mongodb+srv://test:test45@flywithme.gklzz.mongodb.net/?retryWrites=true&w=majority&appName=FlyWithMe
-JWT_SECRET=your_jwt_secret
-WEATHER_API_KEY=your_weather_api_key
+MONGODB_URI=mongodb+srv://test:test45@flywithme.gklzz.mongodb.net/?retryWrites=true&w=majority&appName=FlyWithMe
+JWT_SECRET=7638792f4de6eb60b7d0857a76527ca234b89c129966d55c3ea757880349da771c99157fd84bf6dd26962ed3e86e3f73
 PORT=5000
 ```
 Ruleaza backend-ul:
 ```bash
-npm run dev
+node server.js
 ```
 
 ### 3. Configurare frontend
 ```bash
-cd frontend
+cd frontend/fly-with-me
 npm install
 npm run dev
 ```
