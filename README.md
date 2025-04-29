@@ -70,7 +70,7 @@ npm install
 ```
 Creeaza un fisier `.env`:
 ```env
-MONGO_URI=your_mongo_connection_string
+mongodb+srv://test:test45@flywithme.gklzz.mongodb.net/?retryWrites=true&w=majority&appName=FlyWithMe
 JWT_SECRET=your_jwt_secret
 WEATHER_API_KEY=your_weather_api_key
 PORT=5000
